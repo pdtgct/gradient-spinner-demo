@@ -35,8 +35,8 @@ let gradientLayerFrame = CGRect(
 let gradientAngle : CGFloat = (180.0-40.0)/CGFloat.pi
 let yDelta : CGFloat = round(tan(gradientAngle) * gradientLayerWH)
 
-let startColor : CGColor = UIColor(0x00a859).cgColor
-let endColor : CGColor = UIColor(0x3e4095).cgColor
+let startColor : CGColor = UIColor(0xa000ff).cgColor
+let endColor : CGColor = UIColor(0x2e00ff).cgColor
 let gradientLayer = CAGradientLayer()
 gradientLayer.colors = [startColor, endColor]
 gradientLayer.startPoint = CGPoint(x: 0.0, y: (gradientLayerWH-yDelta)/gradientLayerWH)
