@@ -6,7 +6,7 @@ import Dispatch
 
 let containerFrame = CGRect(x: 0.0, y: 0.0, width: 375.0, height: 667.0)
 let containerView = UIView(frame: containerFrame)
-containerView.backgroundColor = UIColor.white()
+containerView.backgroundColor = UIColor.white
 PlaygroundPage.current.liveView = containerView;
 PlaygroundPage.current.needsIndefiniteExecution = true
 
@@ -42,7 +42,7 @@ gradientLayer.colors = [startColor, endColor]
 gradientLayer.startPoint = CGPoint(x: 0.0, y: (gradientLayerWH-yDelta)/gradientLayerWH)
 gradientLayer.endPoint = CGPoint(x: 1.0, y: yDelta/gradientLayerWH)
 gradientLayer.frame = gradientLayerFrame
-gradientLayer.rasterizationScale = UIScreen.main().scale
+gradientLayer.rasterizationScale = UIScreen.main.scale
 gradientLayer.shouldRasterize = true
 
 let strokeWidth : CGFloat = 14.0
@@ -51,10 +51,10 @@ let maskFrame = gradientLayer.bounds.insetBy(dx: strokeWidth, dy: strokeWidth)
 let maskPath = UIBezierPath(arcCenter: CGPoint(x: strokeWidth + maskFrame.size.width/2.0, y: strokeWidth + maskFrame.size.height/2.0), radius: maskFrame.size.width/2.0, startAngle: -1.0 * (CGFloat.pi/2), endAngle: 3 * (CGFloat.pi/2), clockwise:true)
 let maskLayer = CAShapeLayer()
 maskLayer.path = maskPath.cgPath
-maskLayer.strokeColor = UIColor.black().cgColor
+maskLayer.strokeColor = UIColor.black.cgColor
 maskLayer.lineWidth = strokeWidth
 maskLayer.fillRule = kCAFillRuleEvenOdd
-maskLayer.fillColor = UIColor.clear().cgColor
+maskLayer.fillColor = UIColor.clear.cgColor
 
 gradientLayer.mask = maskLayer
 
@@ -99,7 +99,7 @@ class SpinnerAnimator : NSObject, CAAnimationDelegate {
     func animateForTime(_ seconds: Double) {
         let animationTime = DispatchTime.now() + seconds
         self.startAnimating()
-        DispatchQueue.main.after(when: animationTime, execute: { self.stopAnimating() })
+        OperationQueue.main.underlyingQueue!.asyncAfter(deadline: animationTime, execute: { self.stopAnimating() })
     }
 }
 let spinnerAnimator = SpinnerAnimator()
